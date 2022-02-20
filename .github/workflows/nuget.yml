@@ -5,7 +5,6 @@ on:
     secrets:
       NUGET_TOKEN:
         required: true
-        type: string
 
 jobs:
   build:
