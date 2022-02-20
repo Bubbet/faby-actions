@@ -1,7 +1,11 @@
 name: NuGet Release
 
 on:
-  workflow_call:
+  workflow_call:    
+    secrets:
+      NUGET_TOKEN:
+        required: true
+        type: string
 
 jobs:
   build:
