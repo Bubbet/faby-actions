@@ -19,15 +19,6 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Install GitVersion
-      uses: gittools/actions/gitversion/setup@v0.9.7
-      with:
-        versionSpec: '5.x'
-
-    - name: Determine Version
-      id: gitversion
-      uses: gittools/actions/gitversion/execute@v0.9.7
-
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
@@ -44,6 +35,15 @@ jobs:
       with:
         path: ./obj
         key: obj-${{ github.sha }}
+
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v0.9.7
+      with:
+        versionSpec: '5.x'
+
+    - name: Determine Version
+      id: gitversion
+      uses: gittools/actions/gitversion/execute@v0.9.7
 
     - name: Restore dependencies
       run: dotnet restore   
