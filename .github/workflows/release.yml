@@ -12,7 +12,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ./bin
-          key: bin-${{ github.sha }}
+          key: bin-${{ github.sha }}-${{ github.run_attempt }}
 
       - name: Release
         uses: ncipollo/release-action@v1
