@@ -1,0 +1,30 @@
+name: Thunderstore Release
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+
+      - name: Install TCLI
+        run: dotnet tool install --global tcli --version 0.1.4  
+
+      - name: Get Cache
+        uses: actions/cache@v2
+        with:
+          path: ./bin/Release/netstandard2.0/
+          key: bin-${{ github.sha }}
+
+      - name: Release
+        run: tcli release --token ${{ secrets.THUNDERSTORE_TOKEN }} --package-version ${{ inputs.version }} --config-path ./Thunderstore/thunderstore.toml

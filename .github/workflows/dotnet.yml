@@ -1,0 +1,48 @@
+name: .NET
+
+on:
+  workflow_call:
+    outputs:
+      firstword:
+        description: "Version as determined by GitVersion"
+        value: ${{ jobs.build.outputs.version }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.gitversion.outputs.MajorMinorPatch }}
+    steps:
+
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v0.9.7
+      with:
+        versionSpec: '5.x'
+
+    - name: Determine Version
+      id: gitversion
+      uses: gittools/actions/gitversion/execute@v0.9.7
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+
+    - name: Setup Bin Cache
+      uses: actions/cache@v2
+      id: cache
+      with:
+        path: ./bin/Release/netstandard2.0/
+        key: bin-${{ github.sha }}
+
+    - name: Restore dependencies
+      run: dotnet restore   
+
+    - name: Build
+      run: dotnet build --no-restore
+      

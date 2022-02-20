@@ -1,0 +1,21 @@
+name: GitHub Release
+
+on:
+  workflow_call:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Get Cache
+        uses: actions/cache@v2
+        with:
+          path: ./bin/Release/netstandard2.0/
+          key: bin-${{ github.sha }}
+
+      - name: Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: ./zip/*
+          token: ${{ secrets.GITHUB_TOKEN }}
