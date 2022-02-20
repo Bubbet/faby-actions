@@ -36,13 +36,13 @@ jobs:
     - name: Setup Bin Cache
       uses: actions/cache@v2
       with:
-        path: ./bin/Release/netstandard2.0/
+        path: ./bin
         key: bin-${{ github.sha }}
 
     - name: Setup Obj Cache
       uses: actions/cache@v2
       with:
-        path: ./obj/Release/netstandard2.0/
+        path: ./obj
         key: obj-${{ github.sha }}
 
     - name: Restore dependencies
