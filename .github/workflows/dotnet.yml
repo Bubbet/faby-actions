@@ -35,11 +35,11 @@ jobs:
         path: ./bin
         key: bin-${{ github.sha }}-${{ github.run_attempt }}
 
-    - name: Setup Obj Cache
+    - name: Setup NuGet Cache
       uses: actions/cache@v2
       with:
-        path: ./obj
-        key: obj-${{ github.sha }}-${{ github.run_attempt }}
+        path: ./nuget
+        key: nuget-${{ github.sha }}-${{ github.run_attempt }}
 
     - name: Determine Version
       id: gitversion

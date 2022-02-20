@@ -25,14 +25,11 @@ jobs:
           path: ./bin
           key: bin-${{ github.sha }}-${{ github.run_attempt }}
 
-      - name: Get Obj Cache
+      - name: Get NuGet Cache
         uses: actions/cache@v2
         with:
-          path: ./obj
-          key: obj-${{ github.sha }}-${{ github.run_attempt }}
-      
-      - name: Pack
-        run: dotnet pack -o ./nuget --no-build
+          path: ./nuget
+          key: nuget-${{ github.sha }}-${{ github.run_attempt }}
 
       - name: Push
         run: dotnet nuget push ./nuget/$(ls ./nuget) --api-key "${{ secrets.NUGET_TOKEN }}" --source https://api.nuget.org/v3/index.json
