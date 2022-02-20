@@ -20,7 +20,13 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ./bin/Release/netstandard2.0/
-          key: nuget-${{ github.sha }}
+          key: bin-${{ github.sha }}
+
+      - name: Get Obj Cache
+        uses: actions/cache@v2
+        with:
+          path: ./obj/Release/netstandard2.0/
+          key: bin-${{ github.sha }}
       
       - name: Pack
         run: dotnet pack -o ./nuget --no-build
