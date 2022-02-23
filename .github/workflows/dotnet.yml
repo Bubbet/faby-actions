@@ -52,6 +52,9 @@ jobs:
 
     - name: Build
       run: dotnet build --no-restore
+
+    - name: Publish
+      run: dotnet publish --no-build
       
     - name: Pack
       run: dotnet pack -o ./nuget --no-build
