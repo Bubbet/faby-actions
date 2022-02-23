@@ -33,13 +33,13 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ./bin
-        key: bin-${{ github.sha }}-${{ github.run_attempt }}
+        key: bin-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
 
     - name: Setup NuGet Cache
       uses: actions/cache@v2
       with:
         path: ./nuget
-        key: nuget-${{ github.sha }}-${{ github.run_attempt }}
+        key: nuget-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
 
     - name: Determine Version
       id: gitversion
