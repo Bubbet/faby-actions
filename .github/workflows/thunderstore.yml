@@ -23,7 +23,13 @@ jobs:
       - name: Install TCLI
         run: dotnet tool install --global tcli --version 0.1.4  
 
-      - name: Get Cache
+      - name: Get Bin Cache
+        uses: actions/cache@v2
+        with:
+          path: ./bin
+          key: bin-${{ github.sha }}-${{ github.run_attempt }}
+
+      - name: Setup Zip Cache
         uses: actions/cache@v2
         with:
           path: ./bin
