@@ -36,4 +36,4 @@ jobs:
           key: bin-${{ github.sha }}-${{ github.run_attempt }}
 
       - name: Release
-        run: tcli release --token ${{ secrets.THUNDERSTORE_TOKEN }} --package-version ${{ inputs.version }} --config-path ./Thunderstore/thunderstore.toml
+        run: tcli publish --token ${{ secrets.THUNDERSTORE_TOKEN }} --package-version ${{ inputs.version }} --config-path ./Thunderstore/thunderstore.toml
