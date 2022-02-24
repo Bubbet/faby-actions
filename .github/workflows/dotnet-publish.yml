@@ -11,7 +11,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     outputs:
-      version: ${{ steps.gitversion.outputs.MajorMinorPatch }}
+      version: ${{ steps.gitversion.MajorMinorPatch }}
     steps:
 
     - name: Checkout Repository
