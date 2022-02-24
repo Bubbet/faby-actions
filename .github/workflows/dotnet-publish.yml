@@ -3,7 +3,7 @@ name: .NET Deploy
 on:
   workflow_call:
     outputs:
-      firstword:
+      version:
         description: "Version as determined by GitVersion"
         value: ${{ jobs.build.outputs.version }}
 
