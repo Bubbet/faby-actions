@@ -41,8 +41,8 @@ jobs:
         path: ./nuget
         key: nuget-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
 
-    - id: gitversion
-      name: Determine Version
+    - name: Determine Version
+      id: gitversion
       uses: gittools/actions/gitversion/execute@v0.9.7
       with:
         additionalArguments: "/updateprojectfiles"
