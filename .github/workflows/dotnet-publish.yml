@@ -48,13 +48,13 @@ jobs:
         additionalArguments: "/updateprojectfiles"
 
     - name: Restore dependencies
-      run: dotnet restore   
+      run: dotnet restore -c Release   
 
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore -c Release
 
     - name: Publish
-      run: dotnet publish --no-build
+      run: dotnet publish --no-build -c Release
       
     - name: Pack
-      run: dotnet pack -o ./nuget --no-build
+      run: dotnet pack -o ./nuget --no-build -c Release
