@@ -48,7 +48,7 @@ jobs:
         additionalArguments: "/updateprojectfiles"
 
     - name: Restore dependencies
-      run: dotnet restore -c Release   
+      run: dotnet restore
 
     - name: Build
       run: dotnet build --no-restore -c Release
