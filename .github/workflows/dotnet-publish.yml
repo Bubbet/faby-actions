@@ -47,6 +47,10 @@ jobs:
       with:
         additionalArguments: "/updateprojectfiles"
 
+    - name: Update Version
+      run: sed -i "s/public const string Version = \".*\"/public const string Version = \"${{ jobs.build.outputs.version }}\"/" ${{ github.event.repository.name }}.cs
+
+
     - name: Restore dependencies
       run: dotnet restore
 
