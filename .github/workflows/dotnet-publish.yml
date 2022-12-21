@@ -48,7 +48,7 @@ jobs:
         additionalArguments: "/updateprojectfiles"
 
     - name: Update Version
-      run: sed -i "s/public const string Version = \".*\"/public const string Version = \"${{ jobs.build.outputs.version }}\"/" ${{ github.event.repository.name }}.cs
+      run: sed -i "s/public const string Version = \".*\"/public const string Version = \"${{ steps.gitversion.outputs.MajorMinorPatch }}\"/" ${{ github.event.repository.name }}.cs
 
 
     - name: Restore dependencies
