@@ -18,6 +18,21 @@ jobs:
       with:
         dotnet-version: 6.0.x
 
+    - name: Setup GitVersion
+      uses: gittools/actions/gitversion/setup@v0.9.7
+      with:
+        versionSpec: '5.x'
+
+    - name: Determine Version
+      id: gitversion
+      uses: gittools/actions/gitversion/execute@v0.9.7
+      with:
+        additionalArguments: "/updateprojectfiles"
+
+    - name: Update Version
+      run: sed -i "s/public const string Version = \".*\"/public const string Version = \"${{ steps.gitversion.outputs.MajorMinorPatch }}.{{ github.run_number }}\"/" ${{ github.event.repository.name }}.cs
+
+
     - name: Restore dependencies
       run: dotnet restore   
 
